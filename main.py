@@ -1,4 +1,4 @@
-from math import fabs # Для потрібних обрахунків.
+from math import fabs, log10 # Для потрібних обрахунків.
 from tabulate import tabulate # Для побудови таблиці.
 import time # Для обрахунку час виконання програми.
 
@@ -139,7 +139,7 @@ def getResultFormula(func, eps=float, n=10, step=2, maxIteration=10 ** 4) -> lis
         listData.append(f"{counterIteration}\nостаннє значення\nпри максимальній ітерації")
     else:
         listData.append(counterIteration)
-    listData.append(deltaAbsolute)
+    listData.append(round(deltaAbsolute, 2 + int(-log10(eps))))
     listData.append(deltaRelative)
     listData.append(end[-1])
     return listData
