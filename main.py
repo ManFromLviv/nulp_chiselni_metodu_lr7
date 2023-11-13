@@ -117,14 +117,14 @@ def formula3and8(n=int) -> list:
 
 
 # Отрмати значення при певній точності з певної формули.
-def getResultFormula(func, eps=float, n=10, step=1, maxIteration=10 ** 4) -> list:
+def getResultFormula(func, eps=float, n=10, step=2, maxIteration=10 ** 4) -> list:
     end = func(n)
     start = end.copy()
     counterIteration = 1
     deltaAbsolute, deltaRelative = 0.0, 0.0
     for i in range(maxIteration):  # При досягненні максимального числа ітерацій, буде повернуте останнє значення.
         start = end.copy()
-        n += step
+        n *= step
         end = func(n)
         deltaAbsolute = fabs(start[0] - end[0])
         deltaRelative = round(fabs((start[0] - end[0]) / start[0]) * 100, 2)
@@ -206,11 +206,11 @@ def getTableWithDataResultNotEps(n=int, lengthStrFormula=50) -> str:
     return f"{getTable(nameLastTable, listHeadersLastTable, listData, False, True, lengthStrFormula)}"
 
 if __name__ == "__main__":
-    eps = 10 ** -2  # Взята ця точність для демонстрації, оскільки 10 ** -6 обраховується дуже довго.
+    eps = 10 ** -4  # Взята ця точність для демонстрації, оскільки 10 ** -6 обраховується дуже довго.
     h = 0.1  # Крок для демострації інтерполяції.
     xValue = 0.1  # Значення для обрахунку інтерполяції.
     n = 10  # Кількість вузлів.
-    step = 1  # Крок для зміни кількості вузлів.
+    step = 2  # Крок для зміни кількості вузлів.
     print("Програму розробив Вальчевський П. В. для ЛР № 7, варіант № 3 з дисципліни Чисельні методи.\n")
     print(
         f"Приклад обрахування значення x: {0.1} за допомогою інтерполяції: {getInterpolation(getListX(), getListY(), xValue)[0]}")
